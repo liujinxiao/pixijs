@@ -19,9 +19,9 @@ void main(void)
     vec4 original = texture2D(uSampler, vTextureCoord);
     vec4 masky = texture2D(mask, vMaskCoord);
     float alphaMul = 1.0 - npmAlpha * (1.0 - masky.a);
-    float a = masky.r * clip;
+    float m = masky.r * clip;
     if (isReverse == 1) {
-      a = 1 - a;
+      m = 1.0 - m;
     }
     original *= (alphaMul * a * alpha);
 
