@@ -23,7 +23,7 @@ void main(void)
     if (isReverse == 1) {
       m = 1.0 - m;
     }
-    original *= (alphaMul * a * alpha);
+    original *= (alphaMul * m * alpha);
 
     gl_FragColor = original;
 }
