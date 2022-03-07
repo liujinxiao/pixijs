@@ -6,6 +6,7 @@ uniform sampler2D mask;
 uniform float alpha;
 uniform float npmAlpha;
 uniform vec4 maskClamp;
+uniform int isReverse;
 
 void main(void)
 {
@@ -18,8 +19,11 @@ void main(void)
     vec4 original = texture2D(uSampler, vTextureCoord);
     vec4 masky = texture2D(mask, vMaskCoord);
     float alphaMul = 1.0 - npmAlpha * (1.0 - masky.a);
-
-    original *= (alphaMul * masky.r * alpha * clip);
+    float m = masky.r * clip;
+    if (isReverse == 1) {
+      m = 1.0 - m;
+    }
+    original *= (alphaMul * m * alpha);
 
     gl_FragColor = original;
 }

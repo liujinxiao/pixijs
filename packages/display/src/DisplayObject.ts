@@ -274,6 +274,8 @@ export abstract class DisplayObject extends EventEmitter
 
     /** Does any other displayObject use this object as a mask? */
     public isMask: boolean;
+    /** Dose mask reverse，this is useful only isMask is true */
+    public isMaskReverse: boolean;
 
     /**
      * Which index in the children array the display component was before the previous zIndex sort.
@@ -391,6 +393,7 @@ export abstract class DisplayObject extends EventEmitter
 
         this.isSprite = false;
         this.isMask = false;
+        this.isMaskReverse = false;
     }
 
     /**
@@ -1005,6 +1008,7 @@ export abstract class DisplayObject extends EventEmitter
             {
                 maskObject.renderable = true;
                 maskObject.isMask = false;
+                maskObject.isMaskReverse = false;
             }
         }
 

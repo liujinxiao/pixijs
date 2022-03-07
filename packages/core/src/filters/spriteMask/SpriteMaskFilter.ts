@@ -16,6 +16,7 @@ export interface ISpriteMaskTarget extends IMaskTarget
     _texture: Texture;
     worldAlpha: number;
     anchor: Point;
+    isMaskReverse: boolean;
 }
 
 export interface ISpriteMaskFilter extends Filter
@@ -121,6 +122,7 @@ export class SpriteMaskFilter extends Filter
             .prepend(tex.uvMatrix.mapCoord);
         this.uniforms.alpha = maskSprite.worldAlpha;
         this.uniforms.maskClamp = tex.uvMatrix.uClampFrame;
+        this.uniforms.isReverse = maskSprite.isMaskReverse ? 1 : 0;
 
         filterManager.applyFilter(this, input, output, clearMode);
     }
